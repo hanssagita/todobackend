@@ -13,10 +13,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 seedDb();
 
 app.get("/",(req, res) =>{
-    res.redirect("/todos");
+    res.redirect("/api/todos");
 })
 
-app.use("/todos", todoRoutes);
+app.use("/api/todos", todoRoutes);
 
 app.listen(process.env.PORT, process.env.IP,() =>{
     console.log("Server is listening!!!");
