@@ -8,7 +8,7 @@ var express = require("express"),
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'https://preview.c9users.io');
+    res.setHeader('Access-Control-Allow-Origin', 'https://todolistproject-hanssagita.c9users.io/');
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
