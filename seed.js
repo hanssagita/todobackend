@@ -5,14 +5,6 @@ var data = [
     {
         desc : "Makan Nasi Pake Sayur",
         completed : false
-    },
-    {
-        desc : "Minum Yuzu",
-        completed : false
-    },
-    {
-        desc : "Mandi Pagi",
-        completed : true
     }
 ];
 
