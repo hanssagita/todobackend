@@ -43,7 +43,7 @@ mongoose.connect("mongodb://hans:20121995@ds161503.mlab.com:61503/todolist");
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(bodyParser.json());
-seedDb();
+// seedDb();
 
 app.get("/",(req, res) => {
     res.redirect("/api/todos")
