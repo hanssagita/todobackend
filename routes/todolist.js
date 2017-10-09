@@ -2,52 +2,87 @@ var express = require("express");
 var router = express.Router();
 var todo = require("../models/todo");
 
-
 //See All Data
 router.get("/",(req, res) =>{
     todo.find({}, function(err, allData){
         if(err){
             res.send(err);
         }else{
-            res.send(allData);
+            res.send({
+              status:200,
+              count:allData.length,
+              results:allData
+            });
         }
     })
 });
+
 //See detail Data
 router.get("/:id",(req, res) =>{
     todo.findById(req.params.id, function(err, data){
         if(err){
             res.send(err);
         }else{
-            res.send(data);
+            res.send({
+              status:200,
+              result:data
+            });
         }
     })
 });
 
 //Add new Data
 router.post("/",(req, res) =>{
-    var title = req.body.title;
     var desc = req.body.desc;
-    var newTodos = {title: title, desc : desc};
-    todo.create(newTodos, function(err, data){
-        if(err){
-            console.log(err)
-        }else{
-            res.send("Sucess add "+ title);
-        }
-    });
+    if(desc != 'undefined') {
+        var newTodos = {desc : desc};
+        todo.create(newTodos, function(err, data){
+            if(err){
+                console.log(err)
+            }else{
+                res.send({
+                  status:200,
+                  message:"Success Add " + data.desc
+                });
+            }
+        });
+    }else {
+        res.send("Failed add Data");
+    }
+});
+
+//Update Data Into Checked
+router.post("/:id",(req, res) =>{
+    var completed = req.body.completed;
+    if(completed != 'undefined') {
+        var newStatus = {completed : completed};
+        todo.findByIdAndUpdate(req.params.id, newStatus, function(err, data){
+            if(err){
+                console.log(err)
+            }else{
+                res.send({
+                  status:200,
+                  message:"Success Change status completed" + data.desc
+                });
+            }
+        });
+    }else {
+        res.send("Success Update to Data");
+    }
 });
 
 //Update Data
 router.put("/:id",(req, res) =>{
-    var title = req.body.title;
     var desc = req.body.desc;
-    var newTodos = {title: title, desc : desc};
+    var newTodos = {desc : desc};
     todo.findByIdAndUpdate(req.params.id, newTodos , function(err, data){
         if(err){
             console.log(err)
         }else{
-            res.send("Success update "+ title);
+          res.send({
+            status:200,
+            message:"Success Update " + data.desc
+          });
         }
     })
 })
@@ -58,7 +93,10 @@ router.delete("/:id",(req, res) =>{
         if(err){
             console.log(err);
         }else{
-            res.send("Sucessfull Delete todos")
+          res.send({
+            status:200,
+            message:"Success Delete"
+          });
         }
     })
 })

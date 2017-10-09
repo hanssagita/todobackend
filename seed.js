@@ -3,17 +3,14 @@ var mongoose = require("mongoose"),
 
 var data = [
     {
-        title: "Makan",
         desc : "Makan Nasi Pake Sayur",
         completed : false
     },
     {
-        title: "Minum",
         desc : "Minum Yuzu",
         completed : false
     },
     {
-        title: "Mandi",
         desc : "Mandi Pagi",
         completed : true
     }
