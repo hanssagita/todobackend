@@ -19,7 +19,7 @@ router.get("/",(req, res) =>{
 
 //See detail Data
 router.get("/:id",(req, res) =>{
-    todo.findOne({ 'todoId' : req.params.id }, function(err, data){
+    todo.findById(req.params.id, function(err, data){
         if(err){
             res.send(err);
         }else{
@@ -56,13 +56,13 @@ router.post("/:id",(req, res) =>{
     var completed = req.body.completed;
     if(completed != 'undefined') {
         var newStatus = {completed : completed};
-        todo.findOne({ 'todoId' : req.params.id }, newStatus, function(err, data){
+        todo.findByIdAndUpdate(req.params.id , newStatus, function(err, data){
             if(err){
                 console.log(err)
             }else{
                 res.send({
                   status:200,
-                  message:"Success Change status completed " + data.desc
+                  message:"Success Change status completed "
                 });
             }
         });
@@ -75,7 +75,7 @@ router.post("/:id",(req, res) =>{
 router.put("/:id",(req, res) =>{
     var desc = req.body.desc;
     var newTodos = {desc : desc};
-    todo.findOne({ 'todoId' : req.params.id }, newTodos , function(err, data){
+    todo.findByIdAndUpdate(req.params.id, newTodos , function(err, data){
         if(err){
             console.log(err)
         }else{
@@ -89,7 +89,7 @@ router.put("/:id",(req, res) =>{
 
 //Delete Data
 router.delete("/:id",(req, res) =>{
-    todo.findOne({ 'todoId' : req.params.id }, function(err){
+    todo.findByIdAndRemove(req.params.id, function(err){
         if(err){
             console.log(err);
         }else{

@@ -15,8 +15,6 @@
     "express": "^4.15.4",
     "express-graphql": "^0.6.7",
     "graphql": "^0.10.5",
-    "mongodb-autoincrement": "^1.0.1",
-    "mongoose": "^4.11.7",
-    "mongoose-sequence": "^4.0.0"
+    "mongoose": "^4.11.7"
   }
 }
