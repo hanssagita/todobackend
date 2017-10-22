@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="402af08c-9b9d-424b-8bd1-c5b9ad27e66b" name="Default" comment="" />
+    <list default="true" id="402af08c-9b9d-424b-8bd1-c5b9ad27e66b" name="Default" comment="Create new todoId">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -188,7 +190,7 @@
       <workItem from="1507395540973" duration="2614000" />
       <workItem from="1507641396564" duration="4611000" />
       <workItem from="1508664597950" duration="1007000" />
-      <workItem from="1508675901830" duration="313000" />
+      <workItem from="1508675901830" duration="624000" />
     </task>
     <task id="LOCAL-00001" summary="Create new todoId">
       <created>1508676038865</created>
@@ -201,7 +203,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10370000" />
+    <option name="totallyTimeSpent" value="10681000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="692" extended-state="6" />
