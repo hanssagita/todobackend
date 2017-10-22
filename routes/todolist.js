@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var todo = require("../models/todo");
+var shortId = require("shortid");
 
 //See All Data
 router.get("/",(req, res) =>{
@@ -19,7 +20,7 @@ router.get("/",(req, res) =>{
 
 //See detail Data
 router.get("/:id",(req, res) =>{
-    todo.findById(req.params.id, function(err, data){
+    todo.findOne({ 'todoId': req.params.id}, function(err, data){
         if(err){
             res.send(err);
         }else{
@@ -35,14 +36,20 @@ router.get("/:id",(req, res) =>{
 router.post("/",(req, res) =>{
     var desc = req.body.desc;
     if(desc != 'undefined') {
-        var newTodos = {desc : desc};
+        var newTodos = {
+          desc : desc,
+          todoId : shortId.generate(),
+          date: Date.now(),
+          completed: false
+        };
         todo.create(newTodos, function(err, data){
             if(err){
                 console.log(err)
             }else{
                 res.send({
                   status:200,
-                  message:"Success Add " + data.desc
+                  message:"Success Add " + data.desc,
+                  result: newTodos
                 });
             }
         });
@@ -56,7 +63,7 @@ router.post("/:id",(req, res) =>{
     var completed = req.body.completed;
     if(completed != 'undefined') {
         var newStatus = {completed : completed};
-        todo.findByIdAndUpdate(req.params.id , newStatus, function(err, data){
+        todo.findOneAndUpdate({'todoId': req.params.id} , newStatus, function(err, data){
             if(err){
                 console.log(err)
             }else{
@@ -75,7 +82,7 @@ router.post("/:id",(req, res) =>{
 router.put("/:id",(req, res) =>{
     var desc = req.body.desc;
     var newTodos = {desc : desc};
-    todo.findByIdAndUpdate(req.params.id, newTodos , function(err, data){
+    todo.findOneAndUpdate({'todoId': req.params.id}, newTodos , function(err, data){
         if(err){
             console.log(err)
         }else{
@@ -89,7 +96,7 @@ router.put("/:id",(req, res) =>{
 
 //Delete Data
 router.delete("/:id",(req, res) =>{
-    todo.findByIdAndRemove(req.params.id, function(err){
+    todo.findOneAndRemove({'todoId': req.params.id}, function(err){
         if(err){
             console.log(err);
         }else{

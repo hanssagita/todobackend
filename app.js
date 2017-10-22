@@ -38,9 +38,10 @@ var todoRoutes = require("./routes/todolist");
 //For Development Local    
 // mongoose.connect("mongodb://localhost/todolist");
 
-//For Production
+// For Production
 mongoose.connect("mongodb://hans_sagita:20121995@cluster0-shard-00-00-tj8y5.mongodb.net:27017,cluster0-shard-00-01-tj8y5.mongodb.net:27017,cluster0-shard-00-02-tj8y5.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin");
-// app.use(bodyParser.urlencoded({extended: true}));
+
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(bodyParser.json());
 // seedDb();
@@ -52,9 +53,11 @@ app.get("/",(req, res) => {
 app.use("/api/todos", todoRoutes);
 
 //For Production
+
 app.listen(process.env.PORT, process.env.IP,() =>{
     console.log("Server is listening!!!");
 });
+
 // For Development Local
 
 // app.listen(8000, function () {
